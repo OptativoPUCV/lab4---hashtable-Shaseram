@@ -49,9 +49,17 @@ void insertMap(HashMap * map, char * key, void * value) {
         map->buckets[i] = nuevoNodo;
         map->current = i;
         break;
+      } else if (is_equal(map->buckets[i]->key,key) == 1){
+          map->buckets[i]->value = value;
+          map->current = i;
+        }
       }
+    } else {
+    Pair *nuevoNodo = createPair(key,value);
+    map->buckets[clave] = nuevoNodo;
+    map->current = clave;
     }
-  }
+  
 }
 
 void enlarge(HashMap * map) {
