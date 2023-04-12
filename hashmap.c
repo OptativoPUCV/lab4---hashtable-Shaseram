@@ -43,16 +43,17 @@ void insertMap(HashMap * map, char * key, void * value) {
   long clave = hash(key,map->capacity);
   
   if (map->buckets[clave] != NULL) {
-    for(long i = clave%map->capacity ; i < map->capacity + clave ; i++)  {
-      if (map->buckets[i] == NULL || map->buckets[i]->key == NULL) {
+    for(long i = clave ; i < map->capacity + clave ; i++)  {
+      long j = i % map->capacity;
+      if (map->buckets[j] == NULL || map->buckets[j]->key == NULL) {
         Pair *nuevoNodo = createPair(key, value);
-        map->buckets[i] = nuevoNodo;
+        map->buckets[j] = nuevoNodo;
         map->size++;
-        map->current = i;
+        map->current = j;
         break;
-      } else if (is_equal(map->buckets[i]->key,key) == 1){
-          map->buckets[i]->value = value;
-          map->current = i;
+      } else if (is_equal(map->buckets[j]->key,key) == 1){
+          map->buckets[j]->value = value;
+          map->current = j;
         }
       }
     } else {
