@@ -51,8 +51,9 @@ void insertMap(HashMap * map, char * key, void * value) {
         map->size++;
         map->current = j;
         break;
-   
-    } else {
+      }
+    }
+  } else {
     map->buckets[clave] = nuevoNodo;
     map->size++;
     map->current = clave;
