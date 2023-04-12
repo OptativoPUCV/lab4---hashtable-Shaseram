@@ -45,13 +45,13 @@ void insertMap(HashMap * map, char * key, void * value) {
   if (map->buckets[clave] != NULL) {
     for(long i = clave+1 ; i < map->capacity ; i++)  {
       if (map->buckets[i] == NULL || map->buckets[i]->key == NULL) {
-        map->buckets[i]->key = key;
-        map->buckets[i]->value = value;
+        Pair *nuevoNodo = createPair(key, value);
+        map->buckets[i] = nuevoNodo;
         map->current = i;
+        break;
       }
     }
   }
-  
 }
 
 void enlarge(HashMap * map) {
