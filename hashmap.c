@@ -123,7 +123,7 @@ Pair * firstMap(HashMap * map) {
       return map->buckets[j];
     }
   }
-
+  map->current = -1;
   return NULL;
 }
 
