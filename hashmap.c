@@ -84,6 +84,7 @@ HashMap * createMap(long capacity) {
 void eraseMap(HashMap * map,  char * key) {    
   long clave = hash(key,map->capacity);
   
+  if (map->buckets[clave] == NULL) return NULL;
   
   for (long i = clave ; i < map->capacity + clave ; i++) {
     long j = i % map->capacity;
