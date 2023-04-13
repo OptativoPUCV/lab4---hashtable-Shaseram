@@ -69,7 +69,7 @@ void enlarge(HashMap * map) {
   map->buckets = (Pair **) calloc(map->capacity, sizeof(Pair *));
 
   for(long i = 0 ; i < map->capacity / 2 ; i++) {
-    insertMap(map, old_buckets[i]->key, old_buckets[i]->value);
+    if (old_buckets[i] != NULL) insertMap(map, old_buckets[i]->key, old_buckets[i]->value);
   }
   free(old_buckets);
 }
