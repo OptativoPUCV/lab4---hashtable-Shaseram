@@ -57,7 +57,7 @@ void insertMap(HashMap * map, char * key, void * value) {
     map->buckets[clave] = nuevoNodo;
     map->size++;
     map->current = clave;
-    }
+  }
 }
 
 void enlarge(HashMap * map) {
@@ -87,9 +87,21 @@ void eraseMap(HashMap * map,  char * key) {
 }
 
 Pair * searchMap(HashMap * map,  char * key) {   
-  //long clave = hash()
+  long clave = hash(key,map->capacity);
 
-    return NULL;
+  if (map->buckets[clave] == NULL) return NULL;
+
+  //if (map->buckets[clave] != NULL)
+  for (long i = clave ; i < map->capacity + clave ; i++) {
+    long j = i % map->capacity;
+    if (map->buckets[j] == NULL) return NULL;
+      
+    if (is_equal(map->buckets[j]->key,key) == 1) {
+      map->current = j;
+      return map->buckets[j];
+    }
+  }
+  return NULL;
 }
 
 Pair * firstMap(HashMap * map) {
