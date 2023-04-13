@@ -88,7 +88,7 @@ void eraseMap(HashMap * map,  char * key) {
   
   for (long i = clave ; i < map->capacity + clave ; i++) {
     long j = i % map->capacity;
-    if (is_equal(map->buckets[j]->key,key) == 1 && map->buckets[j] != NULL) {
+    if (map->buckets[j] != NULL && is_equal(map->buckets[j]->key,key) == 1) {
       map->buckets[j]->key = NULL;
       map->size--;
       break;
