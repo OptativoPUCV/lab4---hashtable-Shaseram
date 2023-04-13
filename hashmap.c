@@ -129,5 +129,15 @@ Pair * firstMap(HashMap * map) {
 
 Pair * nextMap(HashMap * map) {
 
-    return NULL;
+  for (long i = map->current ; i < map->capacity + i ; i++) {
+    long j = i % map->capacity;
+    if (map->buckets[j] != NULL) {
+      map->current = j;
+      return map->buckets[j];
+    }
+  }
+
+  return NULL;
 }
+
+
